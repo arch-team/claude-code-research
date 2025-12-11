@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OG Image Template - Claude Code on AWS</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+                   'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+                   sans-serif;
+    }
+
+    /* OG Image Canvas - 1200x630px */
+    .og-canvas {
+      width: 1200px;
+      height: 630px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #232F3E 0%, #1a2332 50%, #146EB4 100%);
+    }
+
+    /* Orange gradient overlay */
+    .og-canvas::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(255, 153, 0, 0.15) 0%, transparent 100%);
+    }
+
+    /* Content container */
+    .og-content {
+      position: relative;
+      z-index: 10;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 60px 80px;
+    }
+
+    /* Header with logos */
+    .og-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .aws-logo {
+      width: 120px;
+      height: 40px;
+      background: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 24px;
+      color: #232F3E;
+    }
+
+    .claude-code-logo {
+      font-size: 28px;
+      font-weight: 700;
+      color: #FF9900;
+      letter-spacing: -0.5px;
+    }
+
+    /* Main content */
+    .og-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 24px;
+    }
+
+    .og-category {
+      display: inline-block;
+      padding: 8px 20px;
+      background: rgba(255, 153, 0, 0.2);
+      border: 2px solid #FF9900;
+      border-radius: 24px;
+      font-size: 18px;
+      font-weight: 600;
+      color: #FF9900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      width: fit-content;
+    }
+
+    .og-title {
+      font-size: 64px;
+      font-weight: 700;
+      color: #FFFFFF;
+      line-height: 1.1;
+      margin: 0;
+      max-width: 1000px;
+    }
+
+    .og-excerpt {
+      font-size: 28px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.4;
+      max-width: 900px;
+    }
+
+    /* Footer */
+    .og-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 20px;
+      border-top: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .og-author {
+      font-size: 20px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .og-date {
+      font-size: 20px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Decorative elements */
+    .decorative-circle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.1;
+    }
+
+    .circle-1 {
+      width: 400px;
+      height: 400px;
+      background: #FF9900;
+      top: -200px;
+      right: -200px;
+    }
+
+    .circle-2 {
+      width: 300px;
+      height: 300px;
+      background: #146EB4;
+      bottom: -150px;
+      left: -150px;
+    }
+  </style>
+</head>
+<body>
+  <!-- OG Image Template -->
+  <div class="og-canvas">
+    <!-- Decorative circles -->
+    <div class="decorative-circle circle-1"></div>
+    <div class="decorative-circle circle-2"></div>
+
+    <!-- Content -->
+    <div class="og-content">
+      <!-- Header with logos -->
+      <div class="og-header">
+        <div class="aws-logo">AWS</div>
+        <div class="claude-code-logo">Claude Code</div>
+      </div>
+
+      <!-- Main content -->
+      <div class="og-main">
+        <div class="og-category">Tutorial</div>
+        <h1 class="og-title">Getting Started with Claude Code on AWS Bedrock</h1>
+        <p class="og-excerpt">Learn how to set up and use Claude Code with AWS Bedrock for AI-powered development</p>
+      </div>
+
+      <!-- Footer -->
+      <div class="og-footer">
+        <div class="og-author">AWS Workshop Team</div>
+        <div class="og-date">October 2025</div>
+      </div>
+    </div>
+  </div>
+
+  <hr style="margin: 40px 0; border: 1px solid #ccc;">
+
+  <!-- Instructions for generating images -->
+  <div style="max-width: 1200px; margin: 40px auto; padding: 0 20px; font-family: sans-serif;">
+    <h2 style="color: #232F3E;">How to Generate OG Images</h2>
+
+    <h3 style="color: #146EB4; margin-top: 30px;">Method 1: Using Puppeteer (Automated)</h3>
+    <pre style="background: #f5f5f5; padding: 20px; border-radius: 8px; overflow-x: auto;"><code>const puppeteer = require('puppeteer');
+
+async function generateOGImage(title, category, excerpt) {
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+
+  // Set viewport to OG image size
+  await page.setViewport({ width: 1200, height: 630 });
+
+  // Load this HTML file
+  await page.goto('file:///path/to/og-image-template.html');
+
+  // Update content
+  await page.evaluate((title, category, excerpt) => {
+    document.querySelector('.og-title').textContent = title;
+    document.querySelector('.og-category').textContent = category;
+    document.querySelector('.og-excerpt').textContent = excerpt;
+  }, title, category, excerpt);
+
+  // Take screenshot
+  await page.screenshot({
+    path: 'og-image.png',
+    type: 'png'
+  });
+
+  await browser.close();
+}
+
+// Generate image
+generateOGImage(
+  'Getting Started with Claude Code on AWS Bedrock',
+  'Tutorial',
+  'Learn how to set up and use Claude Code with AWS Bedrock'
+);
+</code></pre>
+
+    <h3 style="color: #146EB4; margin-top: 30px;">Method 2: Using @vercel/og (Next.js)</h3>
+    <pre style="background: #f5f5f5; padding: 20px; border-radius: 8px; overflow-x: auto;"><code>// app/api/og/route.tsx
+import { ImageResponse } from '@vercel/og';
+
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const title = searchParams.get('title');
+  const category = searchParams.get('category');
+
+  return new ImageResponse(
+    (
+      &lt;div
+        style={{
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          background: 'linear-gradient(135deg, #232F3E 0%, #146EB4 100%)',
+          padding: '60px 80px',
+        }}
+      &gt;
+        {/* Header */}
+        &lt;div style={{ display: 'flex', justifyContent: 'space-between' }}&gt;
+          &lt;div style={{ color: '#FFFFFF', fontSize: 24, fontWeight: 'bold' }}&gt;
+            AWS
+          &lt;/div&gt;
+          &lt;div style={{ color: '#FF9900', fontSize: 28, fontWeight: 700 }}&gt;
+            Claude Code
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        {/* Content */}
+        &lt;div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}&gt;
+          &lt;div
+            style={{
+              background: 'rgba(255, 153, 0, 0.2)',
+              border: '2px solid #FF9900',
+              borderRadius: 24,
+              padding: '8px 20px',
+              color: '#FF9900',
+              fontSize: 18,
+              fontWeight: 600,
+              width: 'fit-content',
+            }}
+          &gt;
+            {category}
+          &lt;/div&gt;
+          &lt;div style={{ color: '#FFFFFF', fontSize: 64, fontWeight: 700 }}&gt;
+            {title}
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        {/* Footer */}
+        &lt;div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            borderTop: '2px solid rgba(255, 255, 255, 0.2)',
+            paddingTop: 20,
+          }}
+        &gt;
+          &lt;div style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: 20 }}&gt;
+            AWS Workshop Team
+          &lt;/div&gt;
+          &lt;div style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: 20 }}&gt;
+            October 2025
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    ),
+    {
+      width: 1200,
+      height: 630,
+    }
+  );
+}
+</code></pre>
+
+    <h3 style="color: #146EB4; margin-top: 30px;">Method 3: Manual Screenshot (Quick)</h3>
+    <ol style="line-height: 1.8;">
+      <li>Open this HTML file in a browser</li>
+      <li>Edit the text content in the HTML (title, category, excerpt)</li>
+      <li>Use browser dev tools to set viewport to 1200x630px</li>
+      <li>Take a screenshot of the .og-canvas element</li>
+      <li>Save as PNG and optimize</li>
+    </ol>
+
+    <h3 style="color: #146EB4; margin-top: 30px;">Customization Options</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>Categories</strong>: Tutorial, Guide, Reference, Getting Started, Advanced</li>
+      <li><strong>Color Schemes</strong>: Adjust gradient for different post types</li>
+      <li><strong>Decorative Elements</strong>: Modify circles for visual variety</li>
+      <li><strong>Typography</strong>: Adjust font sizes based on title length</li>
+    </ul>
+
+    <h3 style="color: #146EB4; margin-top: 30px;">Usage in Blog Posts</h3>
+    <pre style="background: #f5f5f5; padding: 20px; border-radius: 8px; overflow-x: auto;"><code>---
+title: "Getting Started with Claude Code on AWS Bedrock"
+date: "2025-10-22"
+category: "Tutorial"
+ogImage: "/images/og-getting-started.png"
+---
+</code></pre>
+  </div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+---
+title: "Testing Frontmatter Validation Hooks"
+date: "2025-10-25"
+author: "AWS Workshop Team"
+excerpt:
+  "A test post demonstrating PostToolUse hooks for frontmatter validation"
+category: "Best Practices"
+tags: ["hooks", "validation", "claude-code", "automation"]
+published: false
+---
+
+# Testing Hook Validation
+
+This blog post has intentionally incorrect frontmatter to test our validation
+hook.
+
+## What Should Happen
+
+The PostToolUse hook should catch these errors:
+
+- Empty title
+- Invalid date format (month 99, day 99)
+- Empty author
+- Invalid category (should be one of: Bedrock, Infrastructure, MCP, CI/CD, Best
+  Practices)
+- Tags as string instead of array
+- Published as string instead of boolean
+
+Let's see if the hook catches all of these!
